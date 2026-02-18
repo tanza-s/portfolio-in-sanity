@@ -7,3 +7,19 @@ export const POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.curren
 export const POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slug][0]{
   title, body, mainImage
 }`)
+
+export const PROJECTS_QUERY = defineQuery(`*[_type == "project" && defined(slug.current)][0...12]{
+  _id, title, slug
+}`) 
+
+export const PROJECT_QUERY = defineQuery(`*[_type == "project" && slug.current == $slug][0]{
+  title, body, mainImage
+}`)
+
+export const PAGES_QUERY = defineQuery(`*[_type == "page" && defined(slug.current)][0...12]{
+  _id, title, slug
+}`) 
+
+export const PAGE_QUERY = defineQuery(`*[_type == "page" && slug.current == $slug][0]{
+  title, content
+}`)

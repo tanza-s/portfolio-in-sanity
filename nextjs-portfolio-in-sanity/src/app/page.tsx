@@ -13,11 +13,17 @@ const PROJECTS_QUERY = `*[
   && defined(slug.current)
 ]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;
 
+const PAGES_QUERY = `*[
+  _type == "page"
+  && defined(slug.current)
+]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;
+
 const options = { next: { revalidate: 30 } };
 
 export default async function IndexPage() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
   const projects = await client.fetch<SanityDocument[]>(PROJECTS_QUERY, {}, options);
+  const pages = await client.fetch<SanityDocument[]>(PAGES_QUERY, {}, options);
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8">
@@ -40,6 +46,18 @@ export default async function IndexPage() {
             <Link href={`/projects/${project.slug.current}`}>
               <h2 className="text-xl font-semibold">{project.title}</h2>
               <p>{new Date(project.publishedAt).toLocaleDateString()}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <h1 className="text-4xl font-bold mb-8">Pages</h1>
+      <ul className="flex flex-col gap-y-4">
+        {pages.map((page) => (
+          <li className="hover:underline" key={page._id}>
+            <Link href={`/${page.slug.current}`}>
+              <h2 className="text-xl font-semibold">{page.title}</h2>
+              <p>{new Date(page.publishedAt).toLocaleDateString()}</p>
             </Link>
           </li>
         ))}
