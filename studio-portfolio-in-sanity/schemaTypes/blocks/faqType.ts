@@ -1,9 +1,12 @@
 import { defineField, defineType } from "sanity";
+import { HelpCircleIcon } from "@sanity/icons";
+
 
 export const faqType = defineType({
   name: "faq",
   title: "FAQ",
   type: "document",
+  icon: HelpCircleIcon,
   fields: [
     defineField({
       name: "title",
@@ -14,4 +17,15 @@ export const faqType = defineType({
       type: "blockContent",
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+    },
+    prepare({ title }) {
+      return {
+        title,
+        subtitle: "FAQs",
+      };
+    },
+  },
 });

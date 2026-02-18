@@ -1,9 +1,14 @@
-import {defineCliConfig} from 'sanity/cli'
+import { defineCliConfig } from 'sanity/cli'
 
 export default defineCliConfig({
   api: {
     projectId: 'd33pqzuq',
     dataset: 'production'
+  },
+  typegen: {
+    path: '../nextjs-portfolio-in-sanity/src/**/*.{ts,tsx}',
+    schema: './sanity/extract.json',
+    generates: '../nextjs-portfolio-in-sanity/src/sanity/types.ts'
   },
   deployment: {
     /**

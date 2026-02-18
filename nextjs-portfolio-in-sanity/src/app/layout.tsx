@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SanityLive } from "@/sanity/lib/live";
 import { draftMode } from "next/headers";
 import VisualEditingComponent from "@/components/VisualEditing";
+import { SanityLive } from "@/sanity/lib/live";
 
 export const metadata: Metadata = {
   title: "Create Next App",

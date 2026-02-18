@@ -1,8 +1,10 @@
 import { defineField, defineType } from "sanity";
+import { StarIcon } from "@sanity/icons";
 
 export const featuresType = defineType({
   name: "features",
   type: "object",
+  icon: StarIcon,
   fields: [
     defineField({
       name: "title",
@@ -29,4 +31,15 @@ export const featuresType = defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+    },
+    prepare({ title}) {
+      return {
+        title,
+        subtitle: "Features",
+      };
+    },
+  },
 });

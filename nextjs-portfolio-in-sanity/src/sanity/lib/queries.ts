@@ -20,6 +20,16 @@ export const PAGES_QUERY = defineQuery(`*[_type == "page" && defined(slug.curren
   _id, title, slug
 }`) 
 
-export const PAGE_QUERY = defineQuery(`*[_type == "page" && slug.current == $slug][0]{
-  title, content
-}`)
+// ...all other queries
+
+export const PAGE_QUERY =
+  defineQuery(`*[_type == "page" && slug.current == $slug][0]{
+  ...,
+  content[]{
+    ...,
+    _type == "faqs" => {
+      ...,
+      faqs[]->
+    }
+  }
+}`);
