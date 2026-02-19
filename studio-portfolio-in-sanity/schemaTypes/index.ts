@@ -10,6 +10,8 @@ import { pageType } from './pages/pageType';
 import { postType } from './pages/postType';
 import { projectType } from './pages/projectType';
 
+import { siteSettingsType } from "./siteSettingsType";
+
 export const schemaTypes = [
     postType,
     projectType,
@@ -21,4 +23,5 @@ export const schemaTypes = [
     faqType,
     pageBuilderType,
     pageType,
+    siteSettingsType,
 ];

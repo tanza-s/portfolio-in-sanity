@@ -4,6 +4,8 @@ import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
 import { presentationTool } from 'sanity/presentation'
 
+import { structure } from './sanity/structure'
+
 export default defineConfig({
   name: 'default',
   title: 'Portfolio in Sanity',
@@ -12,7 +14,7 @@ export default defineConfig({
   dataset: 'production',
 
   plugins: [
-    structureTool(), 
+    structureTool({ structure }), 
     visionTool(),
     presentationTool({
       previewUrl: {
@@ -58,7 +60,9 @@ export default defineConfig({
       },
     }),
   ],
-
+  document: {
+    newDocumentOptions: (prev) => prev.filter((item) => item.templateId !== "siteSettings"),
+  },
   schema: {
     types: schemaTypes,
   },
